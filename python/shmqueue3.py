@@ -1,6 +1,5 @@
 from multiprocessing import Value, RawValue, RawArray, Process, Event, Semaphore, Condition
 from ctypes import Structure, c_bool, c_uint8, c_int32, c_int64, c_float, addressof, sizeof, string_at, byref, pointer
-import numpy as np
 import cProfile
 import os
 import time
@@ -51,7 +50,7 @@ class ShmPool:
 
         self.array = RawArray(self.elem_type, self.size)
         self.free_queue = RawArray(c_int32, self.size)
-        self.free_queue[:] = np.arange(self.size, dtype=np.int32)
+        self.free_queue[:] = [ i for i in range(self.size) ]
         self.state = RawValue(PoolState, self.size)
 
         self.not_empty = Condition()
