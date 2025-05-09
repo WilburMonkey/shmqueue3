@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "shmqueue3"
+dynamic = [ "version" ]
+authors = [
+  { name="William Deans", email="bill_deans@yahoo.com" },
+]
+description = "Shared memory-based queue for multiprocessing"
+readme = "README.md"
+keywords = [ "multiprocessing", "queue", "shared memory" ]
+requires-python = ">=3.0"
+dependencies = [ "numpy " ]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+
+[project.urls]
+Homepage = "https://github.com/WilliamDeans/shmqueue3"
+Issues = "https://github.com/WilliamDeans/shmqueue3/issues"
