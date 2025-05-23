@@ -127,6 +127,7 @@ class ShmElem:
         self.ptr = ptr
         self.valid = ptr is not None
 
+    @property
     def contents(self):
         if self.valid:
             return self.ptr.contents

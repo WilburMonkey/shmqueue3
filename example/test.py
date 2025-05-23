@@ -1,20 +1,3 @@
-# shmqueue3
-
-Shared-memory based queue for fast data transfer in python multiprocessing.
-
-Benefits over `multiprocessing.Queue`:
-
-- No overhead from serialization/deserialization.
-- Minimal copy overhead (zero-copy in many cases).
-
-Drawback:
-
-- Elements must all be the same type, and that type must be a subclass of `ctypes.Structure`.
-
-
-## Example
-
-```python
 # from shmqueue3 import ShmQueue, ShmPool, ShmElem
 from ctypes import c_uint8, c_int64, c_int32, c_double, c_float, Structure
 from multiprocessing import Event, Process
@@ -101,6 +84,3 @@ if __name__ == '__main__':
     proc.join()
 
     print('sum = {}, count = {}'.format(sum, count))
-
-```
-

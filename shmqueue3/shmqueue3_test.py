@@ -47,7 +47,7 @@ def display_nice():
 
 
 
-ARRAY_SIZE = 8192
+ARRAY_SIZE = 1024
 
 ARRAY = c_int32 * ARRAY_SIZE
 
@@ -95,9 +95,10 @@ def producer(out_queue: ShmQueue, stop_event: Event):
                 # fill the elem
                 # init_ts(elem)
                 # update_ts(elem)
-                # ary = np.frombuffer(elem.ptr.contents.values, np.int32, ARRAY_SIZE)
-                # ary[:] = array_data
+                ary = np.frombuffer(elem.ptr.contents.values, np.int32, ARRAY_SIZE)
+                ary[:] = array_data
                 # update_ts(elem)
+                # time.sleep(0.01)
 
                 while not stop_event.is_set():
                     if out_queue.put(e, timeout=1.0):
@@ -271,7 +272,7 @@ if __name__ == '__main__':
 
     print('state = {}'.format(state))
 
-    queue_size = 32 #(pool_size-20) // 2
+    queue_size = 256 #(pool_size-20) // 2
     qa = ShmQueue(pool, size=queue_size)
     qb = ShmQueue(pool, size=queue_size)
     qc = ShmQueue(pool, size=queue_size)
@@ -294,7 +295,7 @@ if __name__ == '__main__':
         proc.start()
 
     now = time.time()
-    deadline = now + 4.0
+    deadline = now + 10.0
 
     while time.time() < deadline:
         time.sleep(1.0)
